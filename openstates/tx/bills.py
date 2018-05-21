@@ -214,6 +214,8 @@ class TXBillScraper(Scraper, LXMLMixin):
                 atype = 'amendment-withdrawal'
             elif desc == 'Passed' or desc == 'Adopted':
                 atype = 'passage'
+            elif desc == 'Adopted as amended':
+                atype = 'passage'
             elif re.match(r'^Received (by|from) the', desc):
                 if 'Secretary of the Senate' not in desc:
                     atype = 'introduction'
