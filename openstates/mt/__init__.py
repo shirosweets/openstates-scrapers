@@ -4,6 +4,11 @@ from .committees import MTCommitteeScraper
 from .bills import MTBillScraper
 
 
+# MT has pretty aggressive scraper blocking
+settings = {
+    'SCRAPELIB_RPM': 20
+}
+
 class Montana(Jurisdiction):
     division_id = "ocd-division/country:us/state:mt"
     classification = "government"
@@ -39,19 +44,19 @@ class Montana(Jurisdiction):
         },
     ]
     ignored_scraped_sessions = [
-        "2019 Regular Session",
         "2017 Special Session",
         "2009 Regular Session",
-        "2007 Special     Session",
+        "2007 Special Sessions",
         "2007 Regular Session",
-        "2005 Special     Session",
+        "2005 Special Sessions",
         "2005 Regular Session",
         "2003 Regular Session",
-        "2002 Special     Session",
+        "2002 Special Sessions",
         "2001 Regular Session",
-        "2000 Special     Session",
+        "2000 Special Sessions",
+        "1999 Special Sessions",
         "1999 Regular Session",
-        "1999 Special     Session"
+        "1997 Regular Session",
     ]
 
     def get_organizations(self):
@@ -85,5 +90,5 @@ class Montana(Jurisdiction):
 
     def get_session_list(self):
         from openstates.utils.lxmlize import url_xpath
-        return url_xpath('http://leg.mt.gov/css/bills/Default.html',
-                         "//td[@id='cont']/ul/li/a/text()")
+        return url_xpath('https://leg.mt.gov/session/',
+                         "//button[contains(@class,'js-accordionButton')]/text()")
