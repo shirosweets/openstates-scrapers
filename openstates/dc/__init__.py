@@ -3,7 +3,7 @@ from pupa.scrape import Jurisdiction, Organization
 from .people import DCPersonScraper
 # from .committees import DCCommitteeScraper
 from .bills import DCBillScraper
-# from .events import DCEventScraper
+from .events import DCEventScraper
 from .utils import api_request
 
 
@@ -15,7 +15,7 @@ class DistrictOfColumbia(Jurisdiction):
     scrapers = {
         'people': DCPersonScraper,
         # 'committees': DCCommitteeScraper,
-        # 'events': DCEventScraper,
+        'events': DCEventScraper,
         'bills': DCBillScraper,
     }
     legislative_sessions = [

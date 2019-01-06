@@ -17,3 +17,6 @@ chardet
 
 # GA
 suds-py3
+
+# DC Events
+ics
