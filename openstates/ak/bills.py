@@ -89,7 +89,7 @@ class AKBillScraper(Scraper):
 
         if self.bill_list_page is None:
             # putting H1 -> H999 returns all the bills, even senate
-            bill_list_url = 'http://www.akleg.gov/basis/Bill/Range/{}?session=&billH1=1&bill2=H25'.format(session)
+            bill_list_url = 'http://www.akleg.gov/basis/Bill/Range/{}?session=&billH1=1&bill2=H9999'.format(session)
             page = lxml.html.fromstring(self.get(bill_list_url).text)
             page.make_links_absolute('http://www.akleg.gov/')
             self.bill_list_page = page
@@ -122,6 +122,7 @@ class AKBillScraper(Scraper):
         page.make_links_absolute('http://www.akleg.gov')
 
         bill_id = self.extract_ak_field(page, 'Bill ').replace('   ', ' ')
+        bill_id = bill_id.strip()
         short_title = self.extract_ak_field(page, 'Short Title ')
         long_title = self.extract_ak_field(page, 'Title')
 
@@ -219,7 +220,6 @@ class AKBillScraper(Scraper):
             action, atype = self.clean_action(action)
 
             bill.add_action(action,action_date, chamber=chamber, classification=atype)
-
             # if re.match(r"\w+ Y(\d+)", action):
             #     vote_href = row.xpath('.//a/@href')
             #     if vote_href:
