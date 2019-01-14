@@ -48,6 +48,13 @@ class Alaska(Jurisdiction):
             "identifier": "30",
             "name": "30th Legislature (2017-2018)",
             "start_date": "2017-01-17"
+        },
+        {
+            "_scraped_name": "31st Legislature(2019 - 2020)",
+            "end_date": "2019-04-09",
+            "identifier": "31",
+            "name": "31st Legislature (2019-2020)",
+            "start_date": "2019-01-15"
         }
     ]
     ignored_scraped_sessions = [
